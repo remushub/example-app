@@ -6,7 +6,7 @@ node {
 	}
 	
 	stage('Build image') {
-		app = docker.build('remushub/example-app')
+		app = docker.build('remushub/example-app', '-p 8000:8000')
 	}
 	
 	stage('Test') {
