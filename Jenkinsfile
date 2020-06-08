@@ -9,15 +9,12 @@ node {
 		app = docker.build('remushub/example-app')
 	}
 	
-	stage('Approval'){
-		timeout(time: 1, unit: 'HOURS') {
-			input 'upload to Docker Hub?'
-		}
-	}
-	
 	stage('Test') {
 		app.inside {
 			sh 'npm test'
+		}
+		timeout(time: 1, unit: 'HOURS') {
+			input 'upload to Docker Hub?'
 		}
 	}
 	
