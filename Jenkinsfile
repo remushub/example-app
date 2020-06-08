@@ -12,9 +12,13 @@ node {
 	stage('Test') {
 		app.inside {
 			sh 'npm test'
+			sh 'sleep 300'
 		}
+	}
+	
+	stage('Approval') {
 		timeout(time: 1, unit: 'HOURS') {
-			input 'upload to Docker Hub?'
+			input 'Upload to Docker Hub?'
 		}
 	}
 	
